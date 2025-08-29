@@ -2,7 +2,7 @@
 
 Servidor DataSnap Delphi/FireMonkey com integração MongoDB Atlas, interface administrativa e suporte a operações CRUD via API REST.
 
-## ⚠️ Dependências Externas
+## ⚠️ Dependências externas
 
 Este projeto utiliza as seguintes unidades externas que devem ser adicionadas ao projeto:
 
@@ -15,7 +15,7 @@ Este projeto utiliza as seguintes unidades externas que devem ser adicionadas ao
 - 🧩 [TKAFSConexaoDataSnap](https://github.com/ViniciusdoAmaralReis/TKAFSConexaoDataSnap):
 Componente utilizado para os exemplos no cliente. Pode ser substituído por um TSQLConection devidamente configurado
 
-### 🔧Inserir Dados
+### 🔧Inserir dados
 ```pascal
 function TServerMethods.InserirDadosMongoDB(const _banco, _colecao: String;
   const _dados: TJSONObject): TJSONObject;
@@ -62,7 +62,7 @@ finally
 end;
 ```
 
-### 🔧 Editar Dados
+### 🔧 Editar dados
 ```pascal
 function TServerMethods.EditarDadosMongoDB(const _banco, _colecao: String;
   const _filtro, _atualizacao: TJSONObject): TJSONObject;
@@ -116,7 +116,7 @@ finally
 end;
 ```
 
-### 🔧 Buscar Dados
+### 🔧 Buscar dados
 ```pascal
 function TServerMethods.BuscarDadosMongoDB(const _banco, _colecao: string;
   const _filtro: TJSONObject): TJSONObject;
@@ -192,9 +192,9 @@ finally
 end;
 ```
 
-# 🏛️ Status de Compatibilidade
+# 🏛️ Status de compatibilidade
 
-| Sistema Operacional | Status FireDAC MongoDB | Observações |
+| Sistema operacional | Status FireDAC MongoDB | Observações |
 |---------------------|------------------------|-------------|
 | **Windows** | ✅ **Totalmente Compatível** | Funcionamento completo com todos os recursos |
 | **Linux** | ❌ **Não Suportado** | Limitação técnica do driver FireDAC |
