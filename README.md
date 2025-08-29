@@ -31,6 +31,25 @@ KAFSServidorDataSnap/
 └── uKAFSFuncoes.pas              # Funções utilitárias
 ```
 
+## 📦 Dependências Externas
+
+Este projeto utiliza as seguintes unidades externas que devem ser adicionadas ao projeto:
+
+### 🔗 uKAFSConexaoMongoDBAtlas
+**Função**: Gerenciamento de conexão com MongoDB Atlas
+**Necessidade**: Fornece conexão segura e configurável com o MongoDB Atlas usando SRV records
+**Repositório**: [TKAFSConexaoMongoDBAtlas](https://github.com/ViniciusdoAmaralReis/TKAFSConexaoMongoDBAtlas)
+
+### 🔗 uKAFSFuncoes
+**Função**: Utilitários e funções auxiliares
+**Necessidade**: Oferece funções para codificação, cache, manipulação de IP e recursos gráficos
+**Repositório**: [uKAFSFuncoes](https://github.com/ViniciusdoAmaralReis/uKAFSFuncoes)
+
+### 🔗 uKAFSMongoDB
+**Função**: Operações CRUD no MongoDB
+**Necessidade**: Implementa as operações básicas de banco de dados com validação de dados
+**Repositório**: [uKAFSMongoDB](https://github.com/ViniciusdoAmaralReis/uKAFSMongoDB)
+
 ## 🛠️ Configuração
 
 ### Parâmetros do Servidor
@@ -60,10 +79,40 @@ function InserirDadosMongoDB(const _banco, _colecao: String;
   const _dados: TJSONArray): Boolean;
 ```
 
+**Exemplo de uso**:
+```javascript
+// POST request para inserir dados
+{
+  "banco": "meu_banco",
+  "colecao": "minha_colecao",
+  "dados": [
+    "nome", "João Silva",
+    "email", "joao@email.com",
+    "idade", 30
+  ]
+}
+```
+
 ### Editar Dados
 ```pascal
 function EditarDadosMongoDB(const _banco, _colecao: String; 
   const _filtro, _atualizacao: TJSONArray): Boolean;
+```
+
+**Exemplo de uso**:
+```javascript
+// POST request para editar dados
+{
+  "banco": "meu_banco",
+  "colecao": "minha_colecao",
+  "filtro": [
+    "email", "joao@email.com"
+  ],
+  "atualizacao": [
+    "idade", 31,
+    "cidade", "São Paulo"
+  ]
+}
 ```
 
 ### Buscar Dados
@@ -72,27 +121,34 @@ function BuscarDadosMongoDB(const _banco, _colecao: string;
   const _filtro: TJSONArray): TJSONArray;
 ```
 
+**Exemplo de uso**:
+```javascript
+// POST request para buscar dados
+{
+  "banco": "meu_banco",
+  "colecao": "minha_colecao",
+  "filtro": [
+    "cidade", "São Paulo"
+  ]
+}
+```
+
 ## 🚀 Como Executar
 
-1. **Compilar o projeto:**
-   ```bash
-   Delphi > Build Project
-   ```
-
-2. **Executar o servidor:**
+1. **Executar o servidor**:
    - O servidor inicia automaticamente e tenta conectar com MongoDB
    - Se necessário, configure as credenciais do MongoDB via diálogo de entrada
 
-3. **Monitorar status:**
+2. **Monitorar status**:
    - Interface exibe status de conexão com MongoDB
    - Mostra IP local e público
    - Log de atividades em tempo real
 
-4. **Gerenciar servidor:**
-   - Use o botão para iniciar/parar o servidor
+3. **Gerenciar servidor**:
    - Configure a porta TCP desejada
-
-## 🔧 Dependências
+   - Use o botão para iniciar/parar o servidor
+   
+## 🔧 Dependências do Sistema
 
 - `FireDAC.Phys.MongoDBWrapper` - Driver MongoDB
 - `Datasnap.DSServer` - Framework DataSnap
@@ -139,4 +195,4 @@ A interface fornece:
 
 ---
 
-**Nota:** Este servidor requer configuração prévia do MongoDB Atlas e das credenciais apropriadas para funcionamento completo.
+**Nota**: Este servidor requer configuração prévia do MongoDB Atlas e das credenciais apropriadas para funcionamento completo. Certifique-se de ter todas as unidades externas baixadas e configuradas corretamente no projeto.
