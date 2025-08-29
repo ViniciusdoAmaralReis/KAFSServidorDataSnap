@@ -7,16 +7,13 @@ Servidor DataSnap Delphi/FireMonkey com integração MongoDB Atlas, interface ad
 Este projeto utiliza as seguintes unidades externas que devem ser adicionadas ao projeto:
 
 - 🧩 [TKAFSConexaoMongoDBAtlas](https://github.com/ViniciusdoAmaralReis/TKAFSConexaoMongoDBAtlas): 
-Fornece conexão segura e configurável com o MongoDB Atlas usando SRV records
 - 🧩 [uKAFSFuncoes](https://github.com/ViniciusdoAmaralReis/uKAFSFuncoes): 
-Oferece funções para codificação, cache, manipulação de IP e recursos gráficos
 - 🧩 [uKAFSMongoDB](https://github.com/ViniciusdoAmaralReis/uKAFSMongoDB): 
-Implementa as operações básicas de banco de dados com validação de dados
 
-## 🚀 Aplicação no cliente
+## 🚀 Exemplos de consumo no cliente
 
 - 🧩 [TKAFSConexaoDataSnap](https://github.com/ViniciusdoAmaralReis/TKAFSConexaoDataSnap):
-Componente utilizado nos exemplos. Pode ser substituído por um TSQLConection devidamente configurado
+Componente utilizado para os exemplos no cliente. Pode ser substituído por um TSQLConection devidamente configurado
 
 ### 📡Inserir Dados
 ```pascal
