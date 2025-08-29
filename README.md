@@ -21,17 +21,17 @@ function TServerMethods.InserirDadosMongoDB(const _banco, _colecao: String;
   const _dados: TJSONObject): TJSONObject;
 ```
 
-**Exemplo de resposta com sucesso**:
+- Exemplo de resposta com sucesso:
 ```json
 {"sucesso": true}
 ```
 
-**Exemplo de resposta com erro**:
+- Exemplo de resposta com erro:
 ```json
 {"sucesso": false, "erro": "Mensagem do erro aqui"}
 ```
 
-**Exemplo de consumo**:
+- Exemplo de consumo:
 ```pascal
 var _conexao := TKAFSConexaoDataSnap.Create(nil);
 var _metodo := TServerMethodsClient.Create(_conexao.DBXConnection);
@@ -68,17 +68,17 @@ function TServerMethods.EditarDadosMongoDB(const _banco, _colecao: String;
   const _filtro, _atualizacao: TJSONObject): TJSONObject;
 ```
 
-**Exemplo de resposta com sucesso**:
+- Exemplo de resposta com sucesso:
 ```json
 {"sucesso": true}
 ```
 
-**Exemplo de resposta com erro**:
+- Exemplo de resposta com erro:
 ```json
 {"sucesso": false, "erro": "Mensagem do erro aqui"}
 ```
 
-**Exemplo de consumo**:
+- Exemplo de consumo:
 ```pascal
 var _conexao := TKAFSConexaoDataSnap.Create(nil);
 var _metodo := TServerMethodsClient.Create(_conexao.DBXConnection);
@@ -122,7 +122,7 @@ function TServerMethods.BuscarDadosMongoDB(const _banco, _colecao: string;
   const _filtro: TJSONObject): TJSONObject;
 ```
 
-**Exemplo de resposta com sucesso e com resultados**:
+- Exemplo de resposta com sucesso e com resultados:
 ```json
 {
   "sucesso": true,
@@ -144,7 +144,7 @@ function TServerMethods.BuscarDadosMongoDB(const _banco, _colecao: string;
 }
 ```
 
-**Exemplo de resposta com sucesso e sem resultado**:
+- Exemplo de resposta com sucesso e sem resultado:
 ```json
 {
   "sucesso": true,
@@ -153,12 +153,12 @@ function TServerMethods.BuscarDadosMongoDB(const _banco, _colecao: string;
 }
 ```
 
-**Exemplo de resposta com erro**:
+- Exemplo de resposta com erro:
 ```json
 {"sucesso": false, "erro": "Mensagem do erro aqui"}
 ```
 
-**Exemplo de consumo**:
+- Exemplo de consumo:
 ```pascal
 var _conexao := TKAFSConexaoDataSnap.Create(nil);
 var _metodo := TServerMethodsClient.Create(_conexao.DBXConnection);
@@ -202,7 +202,6 @@ end;
 | IDE | Versão mínima | Observações |
 |---------------------|------------------------|-------------|
 | **Delphi** | ✅ **12.3** | Início do suporte nativo a DNS SRV |
-
 
 ---
 **Nota**: Requer configuração prévia do MongoDB Atlas e das credenciais apropriadas para funcionamento completo. Certifique-se de ter todas as unidades externas baixadas e configuradas corretamente no projeto.
