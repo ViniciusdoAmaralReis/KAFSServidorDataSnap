@@ -1,4 +1,4 @@
-# 🚀 KAFSServidorDataSnap
+# 📦 KAFSServidorDataSnap
 
 Servidor DataSnap Delphi/FireMonkey com integração MongoDB Atlas, interface administrativa e suporte a operações CRUD via API REST.
 
@@ -31,24 +31,18 @@ KAFSServidorDataSnap/
 └── uKAFSFuncoes.pas              # Funções utilitárias
 ```
 
-## 📦 Dependências Externas
+## 🔗 Dependências Externas
 
 Este projeto utiliza as seguintes unidades externas que devem ser adicionadas ao projeto:
 
-### 🔗 uKAFSConexaoMongoDBAtlas
-**Função**: Gerenciamento de conexão com MongoDB Atlas
-**Necessidade**: Fornece conexão segura e configurável com o MongoDB Atlas usando SRV records
-**Repositório**: [TKAFSConexaoMongoDBAtlas](https://github.com/ViniciusdoAmaralReis/TKAFSConexaoMongoDBAtlas)
+🧩[TKAFSConexaoMongoDBAtlas](https://github.com/ViniciusdoAmaralReis/TKAFSConexaoMongoDBAtlas)
+Fornece conexão segura e configurável com o MongoDB Atlas usando SRV records
 
-### 🔗 uKAFSFuncoes
-**Função**: Utilitários e funções auxiliares
-**Necessidade**: Oferece funções para codificação, cache, manipulação de IP e recursos gráficos
-**Repositório**: [uKAFSFuncoes](https://github.com/ViniciusdoAmaralReis/uKAFSFuncoes)
+🧩[uKAFSFuncoes](https://github.com/ViniciusdoAmaralReis/uKAFSFuncoes)
+Oferece funções para codificação, cache, manipulação de IP e recursos gráficos
 
-### 🔗 uKAFSMongoDB
-**Função**: Operações CRUD no MongoDB
-**Necessidade**: Implementa as operações básicas de banco de dados com validação de dados
-**Repositório**: [uKAFSMongoDB](https://github.com/ViniciusdoAmaralReis/uKAFSMongoDB)
+🧩[uKAFSMongoDB](https://github.com/ViniciusdoAmaralReis/uKAFSMongoDB)
+Implementa as operações básicas de banco de dados com validação de dados
 
 ## 🛠️ Configuração
 
