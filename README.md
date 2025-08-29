@@ -20,14 +20,17 @@ Componente utilizado para os exemplos no cliente. Pode ser substituído por um T
 function TServerMethods.InserirDadosMongoDB(const _banco, _colecao: String;
   const _dados: TJSONObject): TJSONObject;
 ```
+
 **Exemplo de resposta com sucesso**:
 ```json
 {"sucesso": true}
 ```
+
 **Exemplo de resposta com erro**:
 ```json
 {"sucesso": false, "erro": "Mensagem do erro aqui"}
 ```
+
 **Exemplo de consumo**:
 ```pascal
 var _conexao := TKAFSConexaoDataSnap.Create(nil);
@@ -64,14 +67,17 @@ end;
 function TServerMethods.EditarDadosMongoDB(const _banco, _colecao: String;
   const _filtro, _atualizacao: TJSONObject): TJSONObject;
 ```
+
 **Exemplo de resposta com sucesso**:
 ```json
 {"sucesso": true}
 ```
+
 **Exemplo de resposta com erro**:
 ```json
 {"sucesso": false, "erro": "Mensagem do erro aqui"}
 ```
+
 **Exemplo de consumo**:
 ```pascal
 var _conexao := TKAFSConexaoDataSnap.Create(nil);
@@ -115,6 +121,7 @@ end;
 function TServerMethods.BuscarDadosMongoDB(const _banco, _colecao: string;
   const _filtro: TJSONObject): TJSONObject;
 ```
+
 **Exemplo de resposta com sucesso e com resultados**:
 ```json
 {
@@ -136,6 +143,7 @@ function TServerMethods.BuscarDadosMongoDB(const _banco, _colecao: string;
   ]
 }
 ```
+
 **Exemplo de resposta com sucesso e sem resultado**:
 ```json
 {
@@ -144,10 +152,12 @@ function TServerMethods.BuscarDadosMongoDB(const _banco, _colecao: string;
   "resultados": []
 }
 ```
+
 **Exemplo de resposta com erro**:
 ```json
 {"sucesso": false, "erro": "Mensagem do erro aqui"}
 ```
+
 **Exemplo de consumo**:
 ```pascal
 var _conexao := TKAFSConexaoDataSnap.Create(nil);
@@ -181,6 +191,18 @@ finally
   FreeAndNil(_conexao);
 end;
 ```
----
 
+# 🏛️ Status de Compatibilidade
+
+| Sistema Operacional | Status FireDAC MongoDB | Observações |
+|---------------------|------------------------|-------------|
+| **Windows** | ✅ **Totalmente Compatível** | Funcionamento completo com todos os recursos |
+| **Linux** | ❌ **Não Suportado** | Limitação técnica do driver FireDAC |
+
+| IDE | Versão mínima | Observações |
+|---------------------|------------------------|-------------|
+| **Delphi** | ✅ **12.3** | Início do suporte nativo a DNS SRV |
+
+
+---
 **Nota**: Requer configuração prévia do MongoDB Atlas e das credenciais apropriadas para funcionamento completo. Certifique-se de ter todas as unidades externas baixadas e configuradas corretamente no projeto.
