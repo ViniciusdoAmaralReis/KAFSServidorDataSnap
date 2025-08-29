@@ -28,7 +28,7 @@ function TServerMethods.InserirDadosMongoDB(const _banco, _colecao: String;
 ```json
 {"sucesso": false, "erro": "Mensagem do erro aqui"}
 ```
-**Exemplo de uso**:
+**Exemplo de consumo**:
 ```pascal
 var _conexao := TKAFSConexaoDataSnap.Create(nil);
 var _metodo := TServerMethodsClient.Create(_conexao.DBXConnection);
@@ -72,7 +72,7 @@ function TServerMethods.EditarDadosMongoDB(const _banco, _colecao: String;
 ```json
 {"sucesso": false, "erro": "Mensagem do erro aqui"}
 ```
-**Exemplo de uso**:
+**Exemplo de consumo**:
 ```pascal
 var _conexao := TKAFSConexaoDataSnap.Create(nil);
 var _metodo := TServerMethodsClient.Create(_conexao.DBXConnection);
@@ -148,7 +148,7 @@ function TServerMethods.BuscarDadosMongoDB(const _banco, _colecao: string;
 ```json
 {"sucesso": false, "erro": "Mensagem do erro aqui"}
 ```
-**Exemplo de uso**:
+**Exemplo de consumo**:
 ```pascal
 var _conexao := TKAFSConexaoDataSnap.Create(nil);
 var _metodo := TServerMethodsClient.Create(_conexao.DBXConnection);
