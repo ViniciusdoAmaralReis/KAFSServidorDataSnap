@@ -8,10 +8,9 @@ uses
 type
 {$METHODINFO ON}
   TServerMethods = class(TDataModule)
-
-    function InserirDadosMongoDB(const _banco, _colecao: String; const _dados: TJSONArray): Boolean;
-    function EditarDadosMongoDB(const _banco, _colecao: String; const _filtro, _atualizacao: TJSONArray): Boolean;
-    function BuscarDadosMongoDB(const _banco, _colecao: string; const _filtro: TJSONArray): TJSONArray;
+    function InserirDadosMongoDB(const _banco, _colecao: String; const _dados: TJSONObject): TJSONObject;
+    function EditarDadosMongoDB(const _banco, _colecao: String; const _filtro, _atualizacao: TJSONObject): TJSONObject;
+    function BuscarDadosMongoDB(const _banco, _colecao: string; const _filtro: TJSONObject): TJSONObject;
   end;
 {$METHODINFO OFF}
 
@@ -24,18 +23,17 @@ implementation
 uses
   uKAFSMongoDB;
 
-function TServerMethods.InserirDadosMongoDB(const _banco, _colecao: String; const _dados: TJSONArray): Boolean;
+function TServerMethods.InserirDadosMongoDB(const _banco, _colecao: String; const _dados: TJSONObject): TJSONObject;
 begin
-  Result := InserirDados(_banco, _colecao, _dados).Ok;
+  Result := InserirDados(_banco, _colecao, _dados);
 end;
-function TServerMethods.EditarDadosMongoDB(const _banco, _colecao: String; const _filtro, _atualizacao: TJSONArray): Boolean;
+function TServerMethods.EditarDadosMongoDB(const _banco, _colecao: String; const _filtro, _atualizacao: TJSONObject): TJSONObject;
 begin
-  Result := EditarDados(_banco, _colecao, _filtro, _atualizacao).Ok;
+  Result := EditarDados(_banco, _colecao, _filtro, _atualizacao);
 end;
-function TServerMethods.BuscarDadosMongoDB(const _banco, _colecao: string; const _filtro: TJSONArray): TJSONArray;
+function TServerMethods.BuscarDadosMongoDB(const _banco, _colecao: string; const _filtro: TJSONObject): TJSONObject;
 begin
   Result := BuscarDados(_banco, _colecao, _filtro);
 end;
 
 end.
-
