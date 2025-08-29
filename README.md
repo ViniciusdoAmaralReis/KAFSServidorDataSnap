@@ -2,7 +2,7 @@
 
 Servidor DataSnap Delphi/FireMonkey com integração MongoDB Atlas, interface administrativa e suporte a operações CRUD via API REST.
 
-## 🔗 Dependências Externas
+## ⚠️ Dependências Externas
 
 Este projeto utiliza as seguintes unidades externas que devem ser adicionadas ao projeto:
 
@@ -23,29 +23,27 @@ function InserirDadosMongoDB(const _banco, _colecao: String;
 
 **Exemplo de uso**:
 ```pascal
-var
-  ServerMethods: TServerMethodsClient;
-  Dados: TJSONArray;
-  Resultado: Boolean;
-begin
-  ServerMethods := TServerMethodsClient.Create(SQLConnection1.DBXConnection);
-  try
-    Dados := TJSONArray.Create;
-    Dados.Add('nome');
-    Dados.Add('João Silva');
-    Dados.Add('email');
-    Dados.Add('joao@email.com');
-    Dados.Add('idade');
-    Dados.Add(30);
-    
-    Resultado := ServerMethods.InserirDadosMongoDB('meu_banco', 'minha_colecao', Dados);
-    
-    if Resultado then
-      ShowMessage('Dados inseridos com sucesso!');
-  finally
-    Dados.Free;
-    ServerMethods.Free;
+var ServerMethods := TServerMethodsClient.Create(SQLConnection1.DBXConnection);
+var Dados := TJSONArray.Create;
+try
+  // Criar dados para inserção
+  with Dados do
+  begin
+    Add('nome'); // Campo
+    Add('João Silva'); // Valor
+    Add('email'); // Campo
+    Add('joao@email.com'); // Valor
+    Add('idade'); // Campo
+    Add(30); // Ou TJSONNumber.Create(30) se preferir
   end;
+
+  var Resultado := ServerMethods.InserirDadosMongoDB('meu_banco', 'minha_colecao', Dados);
+
+  if Resultado then
+    ShowMessage('Dados inseridos com sucesso!');
+finally
+  Dados.Free;
+  ServerMethods.Free;
 end;
 ```
 
@@ -57,34 +55,34 @@ function EditarDadosMongoDB(const _banco, _colecao: String;
 
 **Exemplo de uso**:
 ```pascal
-var
-  ServerMethods: TServerMethodsClient;
-  Filtro, Atualizacao: TJSONArray;
-  Resultado: Boolean;
-begin
-  ServerMethods := TServerMethodsClient.Create(SQLConnection1.DBXConnection);
-  try
-    // Criar filtro para localizar o documento
-    Filtro := TJSONArray.Create;
-    Filtro.Add('email');
-    Filtro.Add('joao@email.com');
-    
-    // Criar dados para atualização
-    Atualizacao := TJSONArray.Create;
-    Atualizacao.Add('idade');
-    Atualizacao.Add(31);
-    Atualizacao.Add('cidade');
-    Atualizacao.Add('São Paulo');
-    
-    Resultado := ServerMethods.EditarDadosMongoDB('meu_banco', 'minha_colecao', Filtro, Atualizacao);
-    
-    if Resultado then
-      ShowMessage('Dados atualizados com sucesso!');
-  finally
-    Filtro.Free;
-    Atualizacao.Free;
-    ServerMethods.Free;
+var ServerMethods := TServerMethodsClient.Create(SQLConnection1.DBXConnection);
+var Filtro := TJSONArray.Create;
+var Atualizacao := TJSONArray.Create;
+try
+  // Criar filtro para localizar o documento
+  with Filtro do
+  begin
+    Add('email'); // Campo
+    Add('joao@email.com'); // Valor
   end;
+
+  // Criar dados para atualização
+  with Atualizacao do
+  begin
+    Add('idade'); // Campo
+    Add(31); // Valor
+    Add('cidade'); // Campo
+    Add('São Paulo'); // Valor
+  end;
+
+  var Resultado := ServerMethods.EditarDadosMongoDB('meu_banco', 'minha_colecao', Filtro, Atualizacao);
+
+  if Resultado then
+    ShowMessage('Dados atualizados com sucesso!');
+finally
+  Atualizacao.Free;
+  Filtro.Free;
+  ServerMethods.Free;
 end;
 ```
 
@@ -96,30 +94,25 @@ function BuscarDadosMongoDB(const _banco, _colecao: string;
 
 **Exemplo de uso**:
 ```pascal
-var
-  ServerMethods: TServerMethodsClient;
-  Filtro, Resultados: TJSONArray;
-  I: Integer;
-begin
-  ServerMethods := TServerMethodsClient.Create(SQLConnection1.DBXConnection);
-  try
-    // Criar filtro para busca
-    Filtro := TJSONArray.Create;
-    Filtro.Add('cidade');
-    Filtro.Add('São Paulo');
-    
-    Resultados := ServerMethods.BuscarDadosMongoDB('meu_banco', 'minha_colecao', Filtro);
-    
-    // Processar resultados
-    for I := 0 to Resultados.Size - 1 do
-    begin
-      Memo1.Lines.Add(Resultados.Get(I).ToString);
-    end;
-  finally
-    Filtro.Free;
-    Resultados.Free;
-    ServerMethods.Free;
+var ServerMethods := TServerMethodsClient.Create(SQLConnection1.DBXConnection);
+var Filtro := TJSONArray.Create;
+try
+  // Criar filtro para busca
+  with Filtro do
+  begin
+    Add('cidade'); // Campo
+    Add('São Paulo'); // Valor
   end;
+
+  var Resultados := ServerMethods.BuscarDadosMongoDB('meu_banco', 'minha_colecao', Filtro);
+
+  // Processar resultados
+  for var I := 0 to Resultados.Size - 1 do
+    Memo1.Lines.Add(Resultados.Get(I).ToString);
+finally
+  Resultados.Free;
+  Filtro.Free;
+  ServerMethods.Free;
 end;
 ```
 ---
