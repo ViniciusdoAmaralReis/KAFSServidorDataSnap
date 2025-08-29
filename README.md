@@ -13,106 +13,129 @@ Oferece funções para codificação, cache, manipulação de IP e recursos grá
 - 🧩 [uKAFSMongoDB](https://github.com/ViniciusdoAmaralReis/uKAFSMongoDB): 
 Implementa as operações básicas de banco de dados com validação de dados
 
-## 🚀 Aplicação
+## 🚀 Aplicação no cliente
+
+- 🧩 [TKAFSConexaoDataSnap](https://github.com/ViniciusdoAmaralReis/TKAFSConexaoDataSnap):
+Componente utilizado nos exemplos. Pode ser substituído por um TSQLConection devidamente configurado
 
 ### 📡Inserir Dados
 ```pascal
-function InserirDadosMongoDB(const _banco, _colecao: String; 
-  const _dados: TJSONArray): Boolean;
+function TServerMethods.InserirDadosMongoDB(const _banco, _colecao: String;
+  const _dados: TJSONObject): TJSONObject;
 ```
 
 **Exemplo de uso**:
 ```pascal
-var ServerMethods := TServerMethodsClient.Create(SQLConnection1.DBXConnection);
-var Dados := TJSONArray.Create;
+var _conexao := TKAFSConexaoDataSnap.Create(nil);
+var _metodo := TServerMethodsClient.Create(_conexao.DBXConnection);
+var _dados := TJSONObject.Create;
+var _resultado := TJSONObject.Create;
 try
-  // Criar dados para inserção
-  with Dados do
+  // Preparar dados para inserção
+  with _dados do
   begin
-    Add('nome'); // Campo
-    Add('João Silva'); // Valor
-    Add('email'); // Campo
-    Add('joao@email.com'); // Valor
-    Add('idade'); // Campo
-    Add(30); // Ou TJSONNumber.Create(30) se preferir
+    AddPair('nome', TJSONString.Create('João'));
+    AddPair('email', TJSONString.Create('joao@email.com'));
+    AddPair('nivel', TJSONNumber.Create(1));
   end;
 
-  var Resultado := ServerMethods.InserirDadosMongoDB('meu_banco', 'minha_colecao', Dados);
+  // Executar inserção
+  _resultado := _metodo.InserirDadosMongoDB('meu_banco', 'minha_coleção', _dados);
 
-  if Resultado then
-    ShowMessage('Dados inseridos com sucesso!');
+  // Verificar resultado
+  if not _resultado.GetValue<Boolean>('sucesso') then
+    raise Exception.Create(_resultado.GetValue<string>('erro'));
+
+  ShowMessage('Usuário inserido com sucesso!');
 finally
-  Dados.Free;
-  ServerMethods.Free;
+  FreeAndNil(_resultado);
+  FreeAndNil(_dados);
+  FreeAndNil(_metodo);
+  FreeAndNil(_conexao);
 end;
 ```
 
 ### 📡Editar Dados
 ```pascal
-function EditarDadosMongoDB(const _banco, _colecao: String; 
-  const _filtro, _atualizacao: TJSONArray): Boolean;
+function TServerMethods.EditarDadosMongoDB(const _banco, _colecao: String;
+  const _filtro, _atualizacao: TJSONObject): TJSONObject;
 ```
 
 **Exemplo de uso**:
 ```pascal
-var ServerMethods := TServerMethodsClient.Create(SQLConnection1.DBXConnection);
-var Filtro := TJSONArray.Create;
-var Atualizacao := TJSONArray.Create;
+var _conexao := TKAFSConexaoDataSnap.Create(nil);
+var _metodo := TServerMethodsClient.Create(_conexao.DBXConnection);
+var _filtro := TJSONObject.Create;
+var _atualizacao := TJSONObject.Create;
+var _resultado := TJSONObject.Create;
 try
-  // Criar filtro para localizar o documento
-  with Filtro do
+  // Preparar filtro para edição
+  with _filtro do
   begin
-    Add('email'); // Campo
-    Add('joao@email.com'); // Valor
+    AddPair('email', TJSONString.Create('joao@email.com'));
   end;
 
-  // Criar dados para atualização
-  with Atualizacao do
+  // Preparar dados para atualização
+  with _atualizacao do
   begin
-    Add('idade'); // Campo
-    Add(31); // Valor
-    Add('cidade'); // Campo
-    Add('São Paulo'); // Valor
+    AddPair('nivel', TJSONNumber.Create(2));
+    AddPair('ultima_atualizacao', TJSONString.Create(FormatDateTime('yyyy-mm-dd hh:nn:ss', Now)));
   end;
 
-  var Resultado := ServerMethods.EditarDadosMongoDB('meu_banco', 'minha_colecao', Filtro, Atualizacao);
+  // Executar edição
+  _resultado := _metodo.EditarDadosMongoDB('meu_banco', 'minha_coleção', _filtro, _atualizacao);
 
-  if Resultado then
-    ShowMessage('Dados atualizados com sucesso!');
+  // Verificar resultado
+  if not _resultado.GetValue<Boolean>('sucesso') then
+    raise Exception.Create(_resultado.GetValue<string>('erro'));
+
+  ShowMessage('Usuário atualizado com sucesso!');
 finally
-  Atualizacao.Free;
-  Filtro.Free;
-  ServerMethods.Free;
+  FreeAndNil(_resultado);
+  FreeAndNil(_atualizacao);
+  FreeAndNil(_filtro);
+  FreeAndNil(_metodo);
+  FreeAndNil(_conexao);
 end;
 ```
 
 ### 📡Buscar Dados
 ```pascal
-function BuscarDadosMongoDB(const _banco, _colecao: string; 
-  const _filtro: TJSONArray): TJSONArray;
+function TServerMethods.BuscarDadosMongoDB(const _banco, _colecao: string;
+  const _filtro: TJSONObject): TJSONObject;
 ```
 
 **Exemplo de uso**:
 ```pascal
-var ServerMethods := TServerMethodsClient.Create(SQLConnection1.DBXConnection);
-var Filtro := TJSONArray.Create;
+var _conexao := TKAFSConexaoDataSnap.Create(nil);
+var _metodo := TServerMethodsClient.Create(_conexao.DBXConnection);
+var _filtro := TJSONObject.Create;
+var _resultado := TJSONObject.Create;
 try
-  // Criar filtro para busca
-  with Filtro do
+  // Preparar filtro para busca
+  _filtro := TJSONObject.Create;
+  with _filtro do
   begin
-    Add('cidade'); // Campo
-    Add('São Paulo'); // Valor
+    AddPair('email', TJSONString.Create('joao@email.com'));
   end;
 
-  var Resultados := ServerMethods.BuscarDadosMongoDB('meu_banco', 'minha_colecao', Filtro);
+  // Executar busca
+  _resultado := _metodo.BuscarDadosMongoDB('meu_banco', 'minha_coleção', _filtro);
+
+  // Verificar resultado
+  if not _resultado.GetValue<Boolean>('sucesso') then
+    raise Exception.Create(_resultado.GetValue<string>('erro'));
 
   // Processar resultados
-  for var I := 0 to Resultados.Size - 1 do
-    Memo1.Lines.Add(Resultados.Get(I).ToString);
+  var _quantidade := _resultado.GetValue<Integer>('quantidade');
+  var _usuarios := _resultado.GetValue<TJSONArray>('resultados');
+
+  ShowMessage(Format('%d usuário(s) encontrado(s)', [_quantidade]));
 finally
-  Resultados.Free;
-  Filtro.Free;
-  ServerMethods.Free;
+  FreeAndNil(_resultado);
+  FreeAndNil(_filtro);
+  FreeAndNil(_metodo);
+  FreeAndNil(_conexao);
 end;
 ```
 ---
