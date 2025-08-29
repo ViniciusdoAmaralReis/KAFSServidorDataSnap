@@ -20,7 +20,14 @@ Componente utilizado para os exemplos no cliente. Pode ser substituído por um T
 function TServerMethods.InserirDadosMongoDB(const _banco, _colecao: String;
   const _dados: TJSONObject): TJSONObject;
 ```
-
+**Exemplo de resposta com sucesso**:
+```json
+{"sucesso": true}
+```
+**Exemplo de resposta com erro**:
+```json
+{"sucesso": false, "erro": "Mensagem do erro aqui"}
+```
 **Exemplo de uso**:
 ```pascal
 var _conexao := TKAFSConexaoDataSnap.Create(nil);
@@ -57,7 +64,14 @@ end;
 function TServerMethods.EditarDadosMongoDB(const _banco, _colecao: String;
   const _filtro, _atualizacao: TJSONObject): TJSONObject;
 ```
-
+**Exemplo de resposta com sucesso**:
+```json
+{"sucesso": true}
+```
+**Exemplo de resposta com erro**:
+```json
+{"sucesso": false, "erro": "Mensagem do erro aqui"}
+```
 **Exemplo de uso**:
 ```pascal
 var _conexao := TKAFSConexaoDataSnap.Create(nil);
@@ -101,7 +115,39 @@ end;
 function TServerMethods.BuscarDadosMongoDB(const _banco, _colecao: string;
   const _filtro: TJSONObject): TJSONObject;
 ```
-
+**Exemplo de resposta com sucesso e com resultados**:
+```json
+{
+  "sucesso": true,
+  "quantidade": 2,
+  "resultados": [
+    {
+      "_id": "65a1b2c3d4e5f67890123456",
+      "nome": "João",
+      "email": "joao@email.com",
+      "nivel": 1
+    },
+    {
+      "_id": "65a1b2c3d4e5f67890123457",
+      "nome": "Maria",
+      "email": "maria@email.com",
+      "nivel": 2
+    }
+  ]
+}
+```
+**Exemplo de resposta com sucesso e sem resultado**:
+```json
+{
+  "sucesso": true,
+  "quantidade": 0,
+  "resultados": []
+}
+```
+**Exemplo de resposta com erro**:
+```json
+{"sucesso": false, "erro": "Mensagem do erro aqui"}
+```
 **Exemplo de uso**:
 ```pascal
 var _conexao := TKAFSConexaoDataSnap.Create(nil);
