@@ -10,7 +10,7 @@ Este projeto utiliza as seguintes unidades externas que devem ser adicionadas ao
 - 🧩 [uKAFSFuncoes](https://github.com/ViniciusdoAmaralReis/uKAFSFuncoes): 
 - 🧩 [uKAFSMongoDB](https://github.com/ViniciusdoAmaralReis/uKAFSMongoDB): 
 
-## 🚀 Exemplos de consumo no cliente
+## 💡 Exemplos de consumo no cliente
 
 - 🧩 [TKAFSConexaoDataSnap](https://github.com/ViniciusdoAmaralReis/TKAFSConexaoDataSnap):
 Componente utilizado para os exemplos no cliente. Pode ser substituído por um TSQLConection devidamente configurado
