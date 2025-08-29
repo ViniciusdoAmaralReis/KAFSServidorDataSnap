@@ -15,7 +15,7 @@ Este projeto utiliza as seguintes unidades externas que devem ser adicionadas ao
 - 🧩 [TKAFSConexaoDataSnap](https://github.com/ViniciusdoAmaralReis/TKAFSConexaoDataSnap):
 Componente utilizado para os exemplos no cliente. Pode ser substituído por um TSQLConection devidamente configurado
 
-### 📡Inserir Dados
+### 🔧Inserir Dados
 ```pascal
 function TServerMethods.InserirDadosMongoDB(const _banco, _colecao: String;
   const _dados: TJSONObject): TJSONObject;
@@ -62,7 +62,7 @@ finally
 end;
 ```
 
-### 📡Editar Dados
+### 🔧 Editar Dados
 ```pascal
 function TServerMethods.EditarDadosMongoDB(const _banco, _colecao: String;
   const _filtro, _atualizacao: TJSONObject): TJSONObject;
@@ -116,7 +116,7 @@ finally
 end;
 ```
 
-### 📡Buscar Dados
+### 🔧 Buscar Dados
 ```pascal
 function TServerMethods.BuscarDadosMongoDB(const _banco, _colecao: string;
   const _filtro: TJSONObject): TJSONObject;
