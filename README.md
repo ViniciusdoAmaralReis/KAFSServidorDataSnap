@@ -15,7 +15,7 @@ Implementa as operações básicas de banco de dados com validação de dados
 
 ## 🚀 Aplicação
 
-### Inserir Dados
+### 📡Inserir Dados
 ```pascal
 function InserirDadosMongoDB(const _banco, _colecao: String; 
   const _dados: TJSONArray): Boolean;
@@ -49,7 +49,7 @@ begin
 end;
 ```
 
-### Editar Dados
+### 📡Editar Dados
 ```pascal
 function EditarDadosMongoDB(const _banco, _colecao: String; 
   const _filtro, _atualizacao: TJSONArray): Boolean;
@@ -88,7 +88,7 @@ begin
 end;
 ```
 
-### Buscar Dados
+### 📡Buscar Dados
 ```pascal
 function BuscarDadosMongoDB(const _banco, _colecao: string; 
   const _filtro: TJSONArray): TJSONArray;
