@@ -62,7 +62,7 @@ end;
 ## 💡 Consumo - Editar dados
 ```pascal
 function TServerMethods.EditarDadosMongoDB(const _banco, _colecao: String;
-  const _filtro, _atualizacao: TJSONObject): TJSONObject;
+  const _filtros, _atualizacoes: TJSONObject): TJSONObject;
 ```
 
 - Exemplo de resposta com sucesso:
@@ -79,25 +79,25 @@ function TServerMethods.EditarDadosMongoDB(const _banco, _colecao: String;
 ```pascal
 var _conexao := TKAFSConexaoDataSnap.Create(nil);
 var _metodo := TServerMethodsClient.Create(_conexao.DBXConnection);
-var _filtro := TJSONObject.Create;
-var _atualizacao := TJSONObject.Create;
+var _filtros := TJSONObject.Create;
+var _atualizacoes := TJSONObject.Create;
 var _resultado := TJSONObject.Create;
 try
-  // Preparar filtro para edição
-  with _filtro do
+  // Preparar filtros para edição
+  with _filtros do
   begin
     AddPair('email', TJSONString.Create('joao@email.com'));
   end;
 
   // Preparar dados para atualização
-  with _atualizacao do
+  with _atualizacoes do
   begin
     AddPair('nivel', TJSONNumber.Create(2));
     AddPair('ultima_atualizacao', TJSONString.Create(FormatDateTime('yyyy-mm-dd hh:nn:ss', Now)));
   end;
 
   // Executar edição
-  _resultado := _metodo.EditarDadosMongoDB('meu_banco', 'minha_coleção', _filtro, _atualizacao);
+  _resultado := _metodo.EditarDadosMongoDB('meu_banco', 'minha_coleção', _filtros, _atualizacoes);
 
   // Verificar resultado
   if not _resultado.GetValue<Boolean>('sucesso') then
@@ -106,8 +106,8 @@ try
   ShowMessage('Usuário atualizado com sucesso!');
 finally
   FreeAndNil(_resultado);
-  FreeAndNil(_atualizacao);
-  FreeAndNil(_filtro);
+  FreeAndNil(_atualizacoes);
+  FreeAndNil(_filtros);
   FreeAndNil(_metodo);
   FreeAndNil(_conexao);
 end;
@@ -116,7 +116,7 @@ end;
 ## 💡 Consumo - Buscar dados
 ```pascal
 function TServerMethods.BuscarDadosMongoDB(const _banco, _colecao: string;
-  const _filtro: TJSONObject): TJSONObject;
+  const _filtros: TJSONObject): TJSONObject;
 ```
 
 - Exemplo de resposta com sucesso e com resultados:
@@ -159,18 +159,18 @@ function TServerMethods.BuscarDadosMongoDB(const _banco, _colecao: string;
 ```pascal
 var _conexao := TKAFSConexaoDataSnap.Create(nil);
 var _metodo := TServerMethodsClient.Create(_conexao.DBXConnection);
-var _filtro := TJSONObject.Create;
+var _filtros := TJSONObject.Create;
 var _resultado := TJSONObject.Create;
 try
   // Preparar filtro para busca
-  _filtro := TJSONObject.Create;
-  with _filtro do
+  _filtros := TJSONObject.Create;
+  with _filtros do
   begin
     AddPair('email', TJSONString.Create('joao@email.com'));
   end;
 
   // Executar busca
-  _resultado := _metodo.BuscarDadosMongoDB('meu_banco', 'minha_coleção', _filtro);
+  _resultado := _metodo.BuscarDadosMongoDB('meu_banco', 'minha_coleção', _filtros);
 
   // Verificar resultado
   if not _resultado.GetValue<Boolean>('sucesso') then
@@ -183,7 +183,7 @@ try
   ShowMessage(Format('%d usuário(s) encontrado(s)', [_quantidade]));
 finally
   FreeAndNil(_resultado);
-  FreeAndNil(_filtro);
+  FreeAndNil(_filtros);
   FreeAndNil(_metodo);
   FreeAndNil(_conexao);
 end;
