@@ -5,17 +5,14 @@ Servidor DataSnap Delphi/FireMonkey com integração MongoDB Atlas, interface ad
 ## ⚠️ Dependências externas
 
 Este projeto utiliza as seguintes unidades externas que devem ser adicionadas ao projeto:
-
 - 🧩 [TKAFSConexaoMongoDBAtlas](https://github.com/ViniciusdoAmaralReis/TKAFSConexaoMongoDBAtlas) 
 - 🧩 [uKAFSFuncoes](https://github.com/ViniciusdoAmaralReis/uKAFSFuncoes) 
 - 🧩 [uKAFSMongoDB](https://github.com/ViniciusdoAmaralReis/uKAFSMongoDB) 
 
-## 💡 Exemplos de consumo no cliente
+*Componente utilizado para os exemplos de consumo no cliente. Não é necessário para compilar este projeto servidor.
+- *🧩 [TKAFSConexaoDataSnap](https://github.com/ViniciusdoAmaralReis/TKAFSConexaoDataSnap)
 
-- 🧩 [TKAFSConexaoDataSnap](https://github.com/ViniciusdoAmaralReis/TKAFSConexaoDataSnap):
-Componente utilizado para os exemplos no cliente. Pode ser substituído por um TSQLConection devidamente configurado
-
-### 🔧Inserir dados
+## 💡 Consumo - Inserir dados
 ```pascal
 function TServerMethods.InserirDadosMongoDB(const _banco, _colecao: String;
   const _dados: TJSONObject): TJSONObject;
@@ -62,7 +59,7 @@ finally
 end;
 ```
 
-### 🔧 Editar dados
+## 💡 Consumo - Editar dados
 ```pascal
 function TServerMethods.EditarDadosMongoDB(const _banco, _colecao: String;
   const _filtro, _atualizacao: TJSONObject): TJSONObject;
@@ -116,7 +113,7 @@ finally
 end;
 ```
 
-### 🔧 Buscar dados
+## 💡 Consumo - Buscar dados
 ```pascal
 function TServerMethods.BuscarDadosMongoDB(const _banco, _colecao: string;
   const _filtro: TJSONObject): TJSONObject;
