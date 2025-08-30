@@ -9,8 +9,8 @@ type
 {$METHODINFO ON}
   TServerMethods = class(TDataModule)
     function InserirDadosMongoDB(const _banco, _colecao: String; const _dados: TJSONObject): TJSONObject;
-    function EditarDadosMongoDB(const _banco, _colecao: String; const _filtro, _atualizacao: TJSONObject): TJSONObject;
-    function BuscarDadosMongoDB(const _banco, _colecao: string; const _filtro: TJSONObject): TJSONObject;
+    function EditarDadosMongoDB(const _banco, _colecao: String; const _filtros, _atualizacoes: TJSONObject): TJSONObject;
+    function BuscarDadosMongoDB(const _banco, _colecao: string; const _filtros: TJSONObject): TJSONObject;
   end;
 {$METHODINFO OFF}
 
@@ -27,13 +27,13 @@ function TServerMethods.InserirDadosMongoDB(const _banco, _colecao: String; cons
 begin
   Result := InserirDados(_banco, _colecao, _dados);
 end;
-function TServerMethods.EditarDadosMongoDB(const _banco, _colecao: String; const _filtro, _atualizacao: TJSONObject): TJSONObject;
+function TServerMethods.EditarDadosMongoDB(const _banco, _colecao: String; const _filtros, _atualizacoes: TJSONObject): TJSONObject;
 begin
-  Result := EditarDados(_banco, _colecao, _filtro, _atualizacao);
+  Result := EditarDados(_banco, _colecao, _filtros, _atualizacoes);
 end;
-function TServerMethods.BuscarDadosMongoDB(const _banco, _colecao: string; const _filtro: TJSONObject): TJSONObject;
+function TServerMethods.BuscarDadosMongoDB(const _banco, _colecao: string; const _filtros: TJSONObject): TJSONObject;
 begin
-  Result := BuscarDados(_banco, _colecao, _filtro);
+  Result := BuscarDados(_banco, _colecao, _filtros);
 end;
 
 end.
